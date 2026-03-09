@@ -6,7 +6,7 @@ function Hero() {
   const { language, toggleLanguage } = useLanguage();
 
   return (
-    <section className="relative min-h-screen bg-[#F4F4F4] overflow-hidden">
+    <section className="relative min-h-screen w-full bg-[#F4F4F4] overflow-hidden">
       {/* Arka plan desenleri */}
 
       {/* Üst sol - Ekranın üstünden kesilmiş gri daire */}
@@ -15,10 +15,13 @@ function Hero() {
       {/* Alt sağ - Alttan kesilmiş içi boş halka */}
       <div className="absolute -bottom-20 right-1/4 w-32 h-32 rounded-full border-[20px] border-[#D1D5DB] opacity-40"></div>
 
-      {/* Ana içerik */}
-      <div className="relative z-10 px-64 py-16">
+      {/* PEMBE BANT - YUKARI ÇIKARILDI VE KISALTILDI */}
+      <div className="absolute right-0 bottom-20 sm:bottom-24 lg:bottom-28 w-24 sm:w-28 lg:w-32 h-12 sm:h-14 bg-[#D81B60] rounded-l-full z-0"></div>
+
+      {/* Ana içerik - TAM GENİŞLİK */}
+      <div className="relative z-10 w-full h-full min-h-screen flex flex-col">
         {/* Sağ üst kontroller */}
-        <div className="absolute top-12 right-64 flex items-center gap-6">
+        <div className="absolute top-8 right-8 lg:right-16 flex items-center gap-6">
           {/* Dark Mode Toggle */}
           <div className="flex items-center gap-3">
             <button
@@ -31,35 +34,35 @@ function Hero() {
                 }`}
               />
             </button>
-            <span className="text-xs font-medium text-gray-600 tracking-wider">
+            <span className="text-xs font-medium text-gray-600 tracking-wider hidden sm:block">
               DARK MODE
             </span>
           </div>
-          <span className="text-gray-400">|</span>
+          <span className="text-gray-400 hidden sm:block">|</span>
           {/* Dil seçimi */}
           <button
             onClick={toggleLanguage}
             className="text-xs font-medium tracking-wide"
           >
             <span className="text-[#D81B60] font-bold">TÜRKÇE</span>
-            <span className="mx-1 text-gray-400">'YE GEÇ</span>
+            <span className="mx-1 text-gray-400 hidden sm:inline">'YE GEÇ</span>
           </button>
         </div>
 
-        {/* Hero içerik */}
-        <div className="flex justify-between items-center pt-40 gap-24">
+        {/* Hero içerik - TAM EKRAN VE ORANTILI */}
+        <div className="flex-1 flex flex-col lg:flex-row justify-center items-center px-6 sm:px-12 lg:px-16 xl:px-24 py-20 gap-12 lg:gap-8">
           {/* Sol taraf */}
-          <div className="w-[55%] flex flex-col gap-6">
+          <div className="w-full lg:w-1/2 flex flex-col gap-6">
             {/* Hi! yazısı */}
-            <p className="text-2xl flex items-center gap-2 mb-4">
+            <p className="text-2xl flex items-center gap-2">
               Hi! <span className="text-3xl">👋</span>
             </p>
 
             {/* Başlık */}
-            <h1 className="text-[50px] font-normal leading-[1.2] text-gray-900">
+            <h1 className="text-[clamp(36px,3.5vw,52px)] font-normal leading-[1.2] text-gray-900">
               <span className="relative inline-block">
                 I'm Almila.
-                <span className="absolute -bottom-2 -left-2 w-[85%] h-[20px] bg-[#D81B60] -z-10 rounded-sm"></span>
+                <span className="absolute -bottom-2 -left-2 w-[85%] h-[clamp(12px,1.5vw,20px)] bg-[#D81B60] -z-10 rounded-sm"></span>
               </span>{" "}
               I'm a full-stack
               <br />
@@ -71,7 +74,7 @@ function Hero() {
             </h1>
 
             {/* Sosyal ikonlar */}
-            <div className="flex gap-6 mt-8 text-3xl font-bold text-black">
+            <div className="flex gap-6 mt-4 text-3xl font-bold text-black">
               <a href="#" className="hover:text-[#D81B60] transition-colors">
                 in
               </a>
@@ -87,7 +90,7 @@ function Hero() {
             </div>
 
             {/* Alt yazılar */}
-            <div className="flex flex-col gap-3 mt-6">
+            <div className="flex flex-col gap-3 mt-4">
               <p className="text-lg text-gray-600">
                 Currently{" "}
                 <span className="text-[#D81B60] font-medium">Freelancing</span>{" "}
@@ -105,8 +108,8 @@ function Hero() {
             </div>
           </div>
 
-          {/* Sağ taraf - Fotoğraf ve Dekoratif Şekil */}
-          <div className="w-[45%] flex justify-center items-center relative">
+          {/* Sağ taraf - Fotoğraf */}
+          <div className="w-full lg:w-1/2 flex justify-center items-center relative">
             {/* Görsel ve arka kutu */}
             <div className="relative">
               {/* Arka pembe kutu */}
@@ -115,12 +118,9 @@ function Hero() {
               <img
                 src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=500&fit=crop"
                 alt="Almila"
-                className="rounded-[36px] w-[320px] h-[400px] object-cover relative z-0"
+                className="rounded-[36px] w-[300px] sm:w-[350px] lg:w-[320px] xl:w-[380px] h-[380px] sm:h-[440px] lg:h-[400px] xl:h-[480px] object-cover relative z-10"
               />
             </div>
-
-            {/* Sağ alt dekoratif yuvarlak/pill - SAYFANIN SAĞINDAN ÇIKMIŞ GİBİ */}
-            <div className="absolute -right-32 bottom-8 w-32 h-16 bg-[#D81B60] rounded-l-full -z-10"></div>
           </div>
         </div>
       </div>
