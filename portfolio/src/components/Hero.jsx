@@ -1,9 +1,36 @@
 import { useTheme } from "../context/ThemeContext";
 import { useLanguage } from "../context/LanguageContext";
+import data from "../data/data";
 
 function Hero() {
   const { theme, toggleTheme } = useTheme();
   const { language, toggleLanguage } = useLanguage();
+  const t = data[language];
+
+  // Data'dan gelen subtitle'ı satırlara böl
+  const getSubtitleLines = () => {
+    const subtitle = t.subtitle;
+
+    if (language === "TR") {
+      // Türkçe: "Full-stack developer olarak sağlam ve ölçeklenebilir frontend ürünleri geliştiriyorum. Tanışalım!"
+      return [
+        "Full-stack developer olarak sağlam ve",
+        "ölçeklenebilir frontend ürünleri",
+        "geliştiriyorum. Tanışalım!",
+      ];
+    } else {
+      // İngilizce: "I'm a full-stack developer. I can craft solid and scalable frontend products. Let's meet!"
+      // Noktalardan bölerek satırlara ayır
+      return [
+        "I'm a full-stack",
+        "developer. I can craft solid and",
+        "scalable frontend products.",
+        "Let's meet!",
+      ];
+    }
+  };
+
+  const subtitleLines = getSubtitleLines();
 
   return (
     <section
@@ -13,38 +40,38 @@ function Hero() {
     >
       {/* Üst sol daire */}
       <div
-        className={`absolute -top-16 left-1/3 w-32 h-32 rounded-full  ${
+        className={`absolute -top-16 left-1/3 w-32 h-32 rounded-full transition-transform duration-700 hover:scale-110 hidden xl:block ${
           theme === "dark" ? "bg-[#525252]" : "bg-[#D9D9D9]"
         }`}
       ></div>
 
       {/* Alt sağ içi boş halka */}
       <div
-        className={`absolute -bottom-20 right-1/4 w-32 h-32 rounded-full border-[21px] ${
+        className={`absolute -bottom-20 right-1/4 w-32 h-32 rounded-full border-[21px] transition-transform duration-700 hover:scale-110 hidden xl:block ${
           theme === "dark" ? "border-[#525252]" : "border-[#D9D9D9]"
         }`}
       ></div>
 
       {/* Pembe bant */}
-      <div className="absolute right-0 bottom-20 sm:bottom-24 lg:bottom-28 w-24 sm:w-28 lg:w-32 h-12 sm:h-14 bg-[#D81B60] rounded-l-full z-0"></div>
+      <div className="absolute right-0 bottom-20 sm:bottom-24 lg:bottom-28 w-16 sm:w-24 lg:w-32 h-10 sm:h-12 lg:h-14 bg-[#D81B60] rounded-l-full z-0 transition-all duration-500 hover:w-20 sm:hover:w-28 lg:hover:w-36"></div>
 
       <div className="relative z-10 w-full h-full min-h-screen flex flex-col">
         {/* Sağ üst kontroller */}
-        <div className="absolute top-8 right-8 lg:right-16 flex items-center gap-4">
-          {/* Switch Container */}
-          <div className="flex items-center gap-3">
-            {/* Switch Butonu */}
+        <div className="absolute top-4 sm:top-8 right-4 sm:right-8 lg:right-16 flex items-center gap-2 sm:gap-4">
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
               className={`
-                relative w-12 h-6 rounded-full transition-colors duration-300
+                relative w-10 sm:w-12 h-5 sm:h-6 rounded-full transition-all duration-300 
+                hover:scale-110 hover:shadow-lg hover:shadow-[#D81B60]/30
+                active:scale-95 cursor-pointer
                 ${theme === "dark" ? "bg-[#1a1a1a]" : "bg-[#D81B60]"}
               `}
             >
-              {/* Kayan Daire - Sarı top veya Ay */}
               <span
                 className={`
-                  absolute top-0.5 w-5 h-5 rounded-full shadow-md transition-all duration-300 flex items-center justify-center
+                  absolute top-0.5 w-4 sm:w-5 h-4 sm:h-5 rounded-full shadow-md transition-all duration-300 flex items-center justify-center
                   ${
                     theme === "dark"
                       ? "left-0.5 bg-[#1a1a1a] border border-gray-600"
@@ -54,8 +81,8 @@ function Hero() {
               >
                 {theme === "dark" && (
                   <svg
-                    width="12"
-                    height="12"
+                    width="10"
+                    height="10"
                     viewBox="0 0 24 24"
                     fill="#FCD34D"
                   >
@@ -65,9 +92,8 @@ function Hero() {
               </span>
             </button>
 
-            {/* Yazı */}
             <span
-              className={`text-xs font-medium tracking-wider ${
+              className={`text-[10px] sm:text-xs font-medium tracking-wider transition-colors duration-300 hidden sm:block ${
                 theme === "dark" ? "text-white" : "text-gray-700"
               }`}
             >
@@ -76,69 +102,86 @@ function Hero() {
           </div>
 
           <span
-            className={`hidden sm:block ${
+            className={`hidden lg:block ${
               theme === "dark" ? "text-gray-500" : "text-gray-400"
             }`}
           >
             |
           </span>
 
+          {/* Language Toggle */}
           <button
             onClick={toggleLanguage}
-            className="text-xs font-medium tracking-wide"
+            className="group text-[10px] sm:text-xs font-medium tracking-wide transition-all duration-300 hover:scale-105 cursor-pointer"
           >
-            <span className="text-[#D81B60] font-bold">TÜRKÇE</span>
+            <span className="text-[#D81B60] font-bold group-hover:text-[#ff4081] transition-colors duration-300 relative">
+              {language === "EN" ? "TÜRKÇE" : "ENGLISH"}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#D81B60] transition-all duration-300 group-hover:w-full"></span>
+            </span>
             <span
-              className={`mx-1 hidden sm:inline ${
+              className={`mx-1 hidden lg:inline transition-colors duration-300 ${
                 theme === "dark" ? "text-gray-400" : "text-gray-500"
-              }`}
+              } group-hover:text-[#D81B60]`}
             >
-              'YE GEÇ
+              {language === "EN" ? "'YE GEÇ" : "/ EN"}
             </span>
           </button>
         </div>
 
         {/* Hero içerik */}
-        <div className="flex-1 flex flex-col lg:flex-row justify-center items-center px-6 sm:px-12 lg:px-16 xl:px-24 py-20 gap-12 lg:gap-8">
+        <div className="flex-1 flex flex-col lg:flex-row justify-center items-center px-4 sm:px-6 lg:px-16 xl:px-24 py-16 sm:py-20 gap-8 sm:gap-12 lg:gap-8 pt-20 sm:pt-24">
           {/* Sol taraf */}
-          <div className="w-full lg:w-1/2 flex flex-col gap-6">
+          <div className="w-full lg:w-1/2 flex flex-col gap-4 sm:gap-6 order-2 lg:order-1">
             <p
-              className={`text-2xl flex items-center gap-2 ${
+              className={`text-xl sm:text-2xl flex items-center gap-2 ${
                 theme === "dark" ? "text-white" : "text-gray-900"
               }`}
             >
-              Hi! <span className="text-3xl">👋</span>
+              {t.greeting}
+              <span className="text-2xl sm:text-3xl animate-wave">👋</span>
             </p>
 
+            {/* Başlık - Data'dan gelen subtitle satırlara bölündü */}
             <h1
-              className={`text-[clamp(36px,3.5vw,52px)] font-normal leading-[1.2] ${
+              className={`text-[clamp(20px,4vw,48px)] sm:text-[clamp(24px,3.5vw,52px)] lg:text-[clamp(28px,3vw,52px)] font-normal leading-[1.25] sm:leading-[1.3] ${
                 theme === "dark" ? "text-white" : "text-gray-900"
               }`}
             >
-              <span className="relative inline-block">
-                I'm Almila.
-                <span className="absolute -bottom-2 -left-2 w-[85%] h-[clamp(12px,1.5vw,20px)] bg-[#D81B60] -z-10 rounded-sm"></span>
-              </span>{" "}
-              I'm a full-stack
-              <br />
-              developer. I can craft solid and
-              <br />
-              scalable frontend products.
-              <br />
-              Let's meet!
+              {/* Title data'dan */}
+              <span className="relative inline-block group cursor-default">
+                {t.title}
+                <span className="absolute -bottom-1 left-0 w-[70%] sm:w-[75%] h-[6px] sm:h-[8px] lg:h-[10px] bg-[#D81B60] -z-10 rounded-sm transition-all duration-500 group-hover:w-[80%] group-hover:h-[8px] sm:group-hover:h-[10px] lg:group-hover:h-[14px]"></span>
+              </span>
+              <br className="hidden sm:block" />
+              {/* Subtitle satırları - data'dan bölünerek */}
+              {subtitleLines.map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index < subtitleLines.length - 1 && (
+                    <br className="hidden sm:block" />
+                  )}
+                </span>
+              ))}
             </h1>
 
+            {/* Sosyal ikonlar */}
             <div
-              className={`flex gap-6 mt-4 text-3xl font-bold ${
+              className={`flex gap-4 sm:gap-6 mt-2 sm:mt-4 text-2xl sm:text-3xl font-bold ${
                 theme === "dark" ? "text-white" : "text-black"
               }`}
             >
-              <a href="#" className="hover:text-[#D81B60] transition-colors">
+              <a
+                href="#"
+                className="transition-all duration-300 hover:text-[#D81B60] hover:scale-125 hover:-translate-y-1 cursor-pointer"
+              >
                 in
               </a>
-              <a href="#" className="hover:text-[#D81B60] transition-colors">
+              <a
+                href="#"
+                className="transition-all duration-300 hover:text-[#D81B60] hover:scale-125 hover:-translate-y-1 cursor-pointer"
+              >
                 <svg
-                  className="w-9 h-9"
+                  className="w-7 h-7 sm:w-9 sm:h-9"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -147,25 +190,27 @@ function Hero() {
               </a>
             </div>
 
-            <div className="flex flex-col gap-3 mt-4">
+            <div className="flex flex-col gap-2 sm:gap-3 mt-2 sm:mt-4">
               <p
-                className={`text-lg ${
+                className={`text-sm sm:text-base lg:text-lg ${
                   theme === "dark" ? "text-gray-300" : "text-gray-600"
                 }`}
               >
-                Currently{" "}
-                <span className="text-[#D81B60] font-medium">Freelancing</span>{" "}
-                for UX, UI, & Web Design Project.
+                {t.currently}{" "}
+                <span className="text-[#D81B60] font-medium hover:text-[#ff4081] transition-colors duration-300 cursor-pointer hover:underline decoration-2 underline-offset-4">
+                  {t.freelancing}
+                </span>{" "}
+                {t.currentlyText}
               </p>
               <p
-                className={`text-lg ${
+                className={`text-sm sm:text-base lg:text-lg ${
                   theme === "dark" ? "text-gray-300" : "text-gray-600"
                 }`}
               >
-                Invite me to join your team →{" "}
+                {t.inviteText}{" "}
                 <a
                   href="mailto:pratamaiosi@gmail.com"
-                  className="text-[#D81B60] underline hover:no-underline"
+                  className="text-[#D81B60] underline hover:no-underline hover:text-[#ff4081] transition-all duration-300 hover:tracking-wide cursor-pointer"
                 >
                   pratamaiosi@gmail.com
                 </a>
@@ -174,13 +219,13 @@ function Hero() {
           </div>
 
           {/* Sağ taraf - Fotoğraf */}
-          <div className="w-full lg:w-1/2 flex justify-center items-center relative">
-            <div className="relative">
-              <div className="absolute -top-6 -left-6 w-full h-full bg-[#D81B60] rounded-[36px] -z-10"></div>
+          <div className="w-full lg:w-1/2 flex justify-center items-center relative group order-1 lg:order-2 mb-4 lg:mb-0">
+            <div className="relative transition-all duration-500 group-hover:scale-105">
+              <div className="absolute -top-3 -left-3 sm:-top-6 sm:-left-6 w-full h-full bg-[#D81B60] rounded-[20px] sm:rounded-[36px] -z-10 transition-all duration-500 group-hover:-top-5 group-hover:-left-5 sm:group-hover:-top-8 sm:group-hover:-left-8 group-hover:shadow-2xl group-hover:shadow-[#D81B60]/30"></div>
               <img
                 src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=500&fit=crop"
                 alt="Almila"
-                className="rounded-[36px] w-[300px] sm:w-[350px] lg:w-[320px] xl:w-[380px] h-[380px] sm:h-[440px] lg:h-[400px] xl:h-[480px] object-cover relative z-10"
+                className="rounded-[20px] sm:rounded-[36px] w-[200px] sm:w-[280px] md:w-[320px] lg:w-[300px] xl:w-[380px] h-[260px] sm:h-[350px] md:h-[400px] lg:h-[380px] xl:h-[480px] object-cover relative z-10 transition-all duration-500 group-hover:shadow-2xl"
               />
             </div>
           </div>

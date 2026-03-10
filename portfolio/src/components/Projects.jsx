@@ -56,6 +56,7 @@ function Projects() {
                 borderRadius: "12px",
                 padding: "32px",
                 paddingBottom: "0",
+                overflow: "visible", // Klavyenin dışarı çıkmasına izin ver
               }}
             >
               {/* Başlık */}
@@ -130,14 +131,19 @@ function Projects() {
                 </a>
               </div>
 
-              {/* Laptop Mockup */}
+              {/* Laptop Mockup - Klavye kart dışında */}
               <div
-                className="relative mt-auto"
-                style={{ marginBottom: "-40px" }}
+                className="relative mt-auto flex justify-center w-full"
+                style={{
+                  marginBottom: "-60px", // Klavye kartın dışına taşsın
+                }}
               >
                 <div
                   className="relative"
-                  style={{ width: "500px", height: "287px" }}
+                  style={{
+                    width: "500px",
+                    height: "287px",
+                  }}
                 >
                   {/* Laptop Görseli */}
                   <img
@@ -150,10 +156,10 @@ function Projects() {
                   <div
                     className="absolute overflow-hidden"
                     style={{
-                      top: "15px",
-                      left: "75px",
-                      width: "351px",
-                      height: "220px",
+                      top: "34px",
+                      left: "66px",
+                      width: "305px",
+                      height: "190px",
                     }}
                   >
                     <img

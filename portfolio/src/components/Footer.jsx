@@ -1,6 +1,14 @@
+import { useTheme } from "../context/ThemeContext";
+
 function Footer() {
+  const { theme } = useTheme();
+
   return (
-    <footer className="w-full bg-white py-20 flex justify-center">
+    <footer
+      className={`w-full py-20 flex justify-center transition-colors duration-300 ${
+        theme === "dark" ? "bg-[#484148]" : "bg-white"
+      }`}
+    >
       <div
         className="flex justify-between items-start"
         style={{
@@ -13,7 +21,7 @@ function Footer() {
           <h2
             className="leading-tight"
             style={{
-              color: "#1A1A1A",
+              color: theme === "dark" ? "#FFFFFF" : "#1A1A1A",
               fontSize: "42px",
               fontWeight: 400,
               lineHeight: "100%",
@@ -23,7 +31,7 @@ function Footer() {
             Let's{" "}
             <span className="relative inline-block" style={{ zIndex: 1 }}>
               work together
-              {/* Mavi arka plan çizgisi - sağa kaydırılmış */}
+              {/* Mavi arka plan çizgisi */}
               <span
                 style={{
                   position: "absolute",
@@ -45,9 +53,9 @@ function Footer() {
         <div className="flex flex-col gap-2" style={{ width: "150px" }}>
           <a
             href="#"
-            className="hover:underline"
+            className="hover:underline transition-colors duration-300"
             style={{
-              color: "#4A90E2",
+              color: theme === "dark" ? "#82B1FF" : "#4A90E2",
               fontSize: "20px",
               fontWeight: 500,
               lineHeight: "150%",
@@ -57,9 +65,9 @@ function Footer() {
           </a>
           <a
             href="#"
-            className="hover:underline"
+            className="hover:underline transition-colors duration-300"
             style={{
-              color: "#1A1A1A",
+              color: theme === "dark" ? "#FFFFFF" : "#1A1A1A",
               fontSize: "20px",
               fontWeight: 400,
               lineHeight: "150%",
@@ -69,9 +77,9 @@ function Footer() {
           </a>
           <a
             href="#"
-            className="hover:underline"
+            className="hover:underline transition-colors duration-300"
             style={{
-              color: "#0077B5",
+              color: theme === "dark" ? "#82B1FF" : "#0077B5",
               fontSize: "20px",
               fontWeight: 500,
               lineHeight: "150%",
@@ -81,7 +89,7 @@ function Footer() {
           </a>
           <a
             href="#"
-            className="hover:underline"
+            className="hover:underline transition-colors duration-300"
             style={{
               color: "#D81B60",
               fontSize: "20px",
