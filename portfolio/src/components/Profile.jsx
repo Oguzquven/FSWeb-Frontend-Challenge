@@ -18,11 +18,14 @@ function Profile() {
             borderRadius: "12px",
           }}
         >
-          <h3 className="text-[#D81B60] text-xl font-normal mb-8">
+          <h3
+            className="text-[#D81B60] text-2xl font-normal mb-8"
+            style={{ fontFamily: "serif", fontStyle: "italic" }}
+          >
             Basic Information
           </h3>
 
-          <div className="flex flex-col gap-5 text-base">
+          <div className="flex flex-col gap-5 text-lg">
             <div className="flex gap-12">
               <span className="text-gray-900 font-semibold w-36">
                 Doğum tarihi
@@ -63,16 +66,20 @@ function Profile() {
             borderRadius: "4px",
           }}
         >
-          <h3
-            className="inline-block text-gray-900 text-lg font-normal mb-4"
-            style={{
-              backgroundColor: "#82B1FF",
-              borderRadius: "4px",
-              padding: "8px 16px",
-            }}
-          >
-            About me
-          </h3>
+          <div className="relative inline-block mb-4">
+            <h3 className="text-gray-900 text-lg font-normal relative z-10">
+              About me
+            </h3>
+            <div
+              className="absolute bottom-0 -left-1 h-3 -z-0"
+              style={{
+                backgroundColor: "#82B1FF",
+                borderRadius: "4px",
+                width: "85%",
+                transform: "translateY(2px)",
+              }}
+            ></div>
+          </div>
           <p className="text-gray-700 text-lg leading-relaxed mb-4">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam
             aut, odit laborum aliquam voluptatum nisi mollitia.

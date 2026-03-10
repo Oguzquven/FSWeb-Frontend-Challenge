@@ -22,8 +22,8 @@ function Skills() {
     {
       name: "NODE",
       bgColor: "#1C1C1C",
-      icon: "https://cdn.iconscout.com/icon/free/png-256/free-node-js-icon-svg-download-png-1174936.png",
-      iconClass: "object-contain",
+      icon: "/public/node.jpg",
+      iconClass: "object-cover w-full h-full",
     },
     {
       name: "VS CODE",
