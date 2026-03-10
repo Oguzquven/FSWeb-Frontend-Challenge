@@ -1,36 +1,18 @@
 import { useTheme } from "../context/ThemeContext";
 import { useLanguage } from "../context/LanguageContext";
-import data from "../data/data";
 
 function Hero() {
   const { theme, toggleTheme } = useTheme();
-  const { language, toggleLanguage } = useLanguage();
-  const t = data[language];
+  const { language, toggleLanguage, translationData } = useLanguage();
+  const t = translationData[language];
 
-  // Data'dan gelen subtitle'ı satırlara böl
-  const getSubtitleLines = () => {
-    const subtitle = t.subtitle;
+  // Data.js'den gelen satırlar - doğrudan kullan
+  const subtitleLines = t.subtitleLines;
 
-    if (language === "TR") {
-      // Türkçe: "Full-stack developer olarak sağlam ve ölçeklenebilir frontend ürünleri geliştiriyorum. Tanışalım!"
-      return [
-        "Full-stack developer olarak sağlam ve",
-        "ölçeklenebilir frontend ürünleri",
-        "geliştiriyorum. Tanışalım!",
-      ];
-    } else {
-      // İngilizce: "I'm a full-stack developer. I can craft solid and scalable frontend products. Let's meet!"
-      // Noktalardan bölerek satırlara ayır
-      return [
-        "I'm a full-stack",
-        "developer. I can craft solid and",
-        "scalable frontend products.",
-        "Let's meet!",
-      ];
-    }
-  };
-
-  const subtitleLines = getSubtitleLines();
+  // Title'ı data.js'den al (noktasız versiyon için)
+  const rawTitle = t.title; // "Ben Almila." veya "I'm Almila."
+  // Noktayı kaldır çünkü subtitleLines'ta var
+  const titleText = rawTitle.replace(".", "");
 
   return (
     <section
@@ -38,9 +20,9 @@ function Hero() {
         theme === "dark" ? "bg-[#2A262B]" : "bg-[#F4F4F4]"
       }`}
     >
-      {/* Üst sol daire */}
+      {/* Üst sol yarım daire */}
       <div
-        className={`absolute -top-16 left-1/3 w-32 h-32 rounded-full transition-transform duration-700 hover:scale-110 hidden xl:block ${
+        className={`absolute -top-16 left-[30%] w-32 h-32 rounded-full transition-transform duration-700 hover:scale-110 hidden xl:block ${
           theme === "dark" ? "bg-[#525252]" : "bg-[#D9D9D9]"
         }`}
       ></div>
@@ -52,8 +34,8 @@ function Hero() {
         }`}
       ></div>
 
-      {/* Pembe bant */}
-      <div className="absolute right-0 bottom-20 sm:bottom-24 lg:bottom-28 w-16 sm:w-24 lg:w-32 h-10 sm:h-12 lg:h-14 bg-[#D81B60] rounded-l-full z-0 transition-all duration-500 hover:w-20 sm:hover:w-28 lg:hover:w-36"></div>
+      {/* Pembe bant - fotoğraf hizasında, sağda */}
+      <div className="absolute right-0 bottom-32 sm:bottom-40 lg:bottom-48 w-16 sm:w-24 lg:w-32 h-10 sm:h-12 lg:h-14 bg-[#D81B60] rounded-l-full z-0 transition-all duration-500 hover:w-20 sm:hover:w-28 lg:hover:w-36"></div>
 
       <div className="relative z-10 w-full h-full min-h-screen flex flex-col">
         {/* Sağ üst kontroller */}
@@ -128,37 +110,43 @@ function Hero() {
           </button>
         </div>
 
-        {/* Hero içerik */}
-        <div className="flex-1 flex flex-col lg:flex-row justify-center items-center px-4 sm:px-6 lg:px-16 xl:px-24 py-16 sm:py-20 gap-8 sm:gap-12 lg:gap-8 pt-20 sm:pt-24">
-          {/* Sol taraf */}
-          <div className="w-full lg:w-1/2 flex flex-col gap-4 sm:gap-6 order-2 lg:order-1">
+        {/* Hero içerik - Responsive ve tam ekran */}
+        <div className="flex-1 flex flex-col lg:flex-row justify-center items-center w-full px-4 sm:px-6 lg:px-8 xl:px-12 py-16 sm:py-20 gap-8 sm:gap-10 lg:gap-8 pt-20 sm:pt-24">
+          {/* Sol taraf - Metin */}
+          <div className="w-full lg:w-1/2 flex flex-col gap-4 sm:gap-5 order-2 lg:order-1 lg:pl-4 xl:pl-8">
+            {/* Greeting - data.js'den */}
             <p
-              className={`text-xl sm:text-2xl flex items-center gap-2 ${
+              className={`text-lg sm:text-xl flex items-center gap-2 ${
                 theme === "dark" ? "text-white" : "text-gray-900"
               }`}
             >
               {t.greeting}
-              <span className="text-2xl sm:text-3xl animate-wave">👋</span>
             </p>
 
-            {/* Başlık - Data'dan gelen subtitle satırlara bölündü */}
+            {/* Başlık - data.js'deki subtitleLines'a göre düzenlenmiş */}
             <h1
-              className={`text-[clamp(20px,4vw,48px)] sm:text-[clamp(24px,3.5vw,52px)] lg:text-[clamp(28px,3vw,52px)] font-normal leading-[1.25] sm:leading-[1.3] ${
+              className={`text-[clamp(20px,4vw,38px)] sm:text-[clamp(24px,3.5vw,44px)] lg:text-[clamp(28px,3vw,48px)] font-normal leading-[1.25] sm:leading-[1.3] tracking-tight ${
                 theme === "dark" ? "text-white" : "text-gray-900"
               }`}
             >
-              {/* Title data'dan */}
-              <span className="relative inline-block group cursor-default">
-                {t.title}
-                <span className="absolute -bottom-1 left-0 w-[70%] sm:w-[75%] h-[6px] sm:h-[8px] lg:h-[10px] bg-[#D81B60] -z-10 rounded-sm transition-all duration-500 group-hover:w-[80%] group-hover:h-[8px] sm:group-hover:h-[10px] lg:group-hover:h-[14px]"></span>
-              </span>
-              <br className="hidden sm:block" />
-              {/* Subtitle satırları - data'dan bölünerek */}
               {subtitleLines.map((line, index) => (
-                <span key={index}>
-                  {line}
-                  {index < subtitleLines.length - 1 && (
-                    <br className="hidden sm:block" />
+                <span key={index} className="block">
+                  {index === 0 ? (
+                    // İlk satır: Title (pembe underline'lı) + devamı
+                    <span className="relative inline">
+                      <span className="relative inline-block">
+                        {language === "EN" ? "I'm Almila." : "Ben Almila."}
+                        <span className="absolute -bottom-1 right-14 w-[75%] h-[6px] sm:h-[21px] bg-[#D81B60] -z-10 rounded-sm"></span>
+                      </span>
+                      <span>
+                        {" "}
+                        {language === "EN"
+                          ? "I'm a full-stack"
+                          : "Full-stack developer"}
+                      </span>
+                    </span>
+                  ) : (
+                    line
                   )}
                 </span>
               ))}
@@ -166,22 +154,22 @@ function Hero() {
 
             {/* Sosyal ikonlar */}
             <div
-              className={`flex gap-4 sm:gap-6 mt-2 sm:mt-4 text-2xl sm:text-3xl font-bold ${
+              className={`flex gap-4 sm:gap-5 mt-3 sm:mt-4 text-2xl sm:text-3xl font-bold ${
                 theme === "dark" ? "text-white" : "text-black"
               }`}
             >
               <a
                 href="#"
-                className="transition-all duration-300 hover:text-[#D81B60] hover:scale-125 hover:-translate-y-1 cursor-pointer"
+                className="transition-all duration-300 hover:text-[#D81B60] hover:scale-110 cursor-pointer"
               >
                 in
               </a>
               <a
                 href="#"
-                className="transition-all duration-300 hover:text-[#D81B60] hover:scale-125 hover:-translate-y-1 cursor-pointer"
+                className="transition-all duration-300 hover:text-[#D81B60] hover:scale-110 cursor-pointer"
               >
                 <svg
-                  className="w-7 h-7 sm:w-9 sm:h-9"
+                  className="w-6 h-6 sm:w-8 sm:h-8"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -190,27 +178,28 @@ function Hero() {
               </a>
             </div>
 
-            <div className="flex flex-col gap-2 sm:gap-3 mt-2 sm:mt-4">
+            {/* Footer info - data.js'den: Biraz sağa kaydırıldı */}
+            <div className="flex flex-col gap-1.5 sm:gap-2 mt-2 sm:mt-3 lg:pl-2">
               <p
-                className={`text-sm sm:text-base lg:text-lg ${
+                className={`text-sm sm:text-base ${
                   theme === "dark" ? "text-gray-300" : "text-gray-600"
                 }`}
               >
                 {t.currently}{" "}
-                <span className="text-[#D81B60] font-medium hover:text-[#ff4081] transition-colors duration-300 cursor-pointer hover:underline decoration-2 underline-offset-4">
+                <span className="text-[#D81B60] font-medium">
                   {t.freelancing}
                 </span>{" "}
                 {t.currentlyText}
               </p>
               <p
-                className={`text-sm sm:text-base lg:text-lg ${
+                className={`text-sm sm:text-base ${
                   theme === "dark" ? "text-gray-300" : "text-gray-600"
                 }`}
               >
                 {t.inviteText}{" "}
                 <a
                   href="mailto:pratamaiosi@gmail.com"
-                  className="text-[#D81B60] underline hover:no-underline hover:text-[#ff4081] transition-all duration-300 hover:tracking-wide cursor-pointer"
+                  className="text-[#D81B60] underline hover:no-underline transition-all duration-300"
                 >
                   pratamaiosi@gmail.com
                 </a>
@@ -218,14 +207,15 @@ function Hero() {
             </div>
           </div>
 
-          {/* Sağ taraf - Fotoğraf */}
-          <div className="w-full lg:w-1/2 flex justify-center items-center relative group order-1 lg:order-2 mb-4 lg:mb-0">
+          {/* Sağ taraf - Fotoğraf: Responsive boyutlar */}
+          <div className="w-full lg:w-1/2 flex justify-center lg:justify-center lg:pl-8 xl:pl-16 items-center relative group order-1 lg:order-2 mb-4 lg:mb-0">
             <div className="relative transition-all duration-500 group-hover:scale-105">
-              <div className="absolute -top-3 -left-3 sm:-top-6 sm:-left-6 w-full h-full bg-[#D81B60] rounded-[20px] sm:rounded-[36px] -z-10 transition-all duration-500 group-hover:-top-5 group-hover:-left-5 sm:group-hover:-top-8 sm:group-hover:-left-8 group-hover:shadow-2xl group-hover:shadow-[#D81B60]/30"></div>
+              {/* Pembe border/arka plan */}
+              <div className="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 w-full h-full bg-[#D81B60] rounded-[20px] sm:rounded-[28px] -z-10 transition-all duration-500 group-hover:-top-4 group-hover:-left-4 sm:group-hover:-top-6 sm:group-hover:-left-6"></div>
               <img
                 src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=500&fit=crop"
                 alt="Almila"
-                className="rounded-[20px] sm:rounded-[36px] w-[200px] sm:w-[280px] md:w-[320px] lg:w-[300px] xl:w-[380px] h-[260px] sm:h-[350px] md:h-[400px] lg:h-[380px] xl:h-[480px] object-cover relative z-10 transition-all duration-500 group-hover:shadow-2xl"
+                className="rounded-[20px] sm:rounded-[28px] w-[200px] sm:w-[260px] md:w-[300px] lg:w-[320px] xl:w-[360px] h-[260px] sm:h-[340px] md:h-[380px] lg:h-[400px] xl:h-[450px] object-cover relative z-10 transition-all duration-500"
               />
             </div>
           </div>

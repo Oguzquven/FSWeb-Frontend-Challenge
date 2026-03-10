@@ -1,7 +1,11 @@
 import { useTheme } from "../context/ThemeContext";
+import { useLanguage } from "../context/LanguageContext";
+import data from "../data/data";
 
 function Projects() {
   const { theme } = useTheme();
+  const { language } = useLanguage();
+  const t = data[language];
 
   const projects = [
     {
@@ -42,7 +46,7 @@ function Projects() {
             theme === "dark" ? "text-white" : "text-gray-900"
           }`}
         >
-          Projects
+          {t.projectsTitle}
         </h2>
 
         <div className="flex justify-center gap-8">
@@ -114,7 +118,7 @@ function Projects() {
                     lineHeight: "150%",
                   }}
                 >
-                  View on Github
+                  {t.viewGithub}
                 </a>
                 <a
                   href="#"
@@ -127,7 +131,7 @@ function Projects() {
                     lineHeight: "150%",
                   }}
                 >
-                  Go to app →
+                  {t.goToApp} →
                 </a>
               </div>
 

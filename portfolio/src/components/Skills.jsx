@@ -1,7 +1,10 @@
 import { useTheme } from "../context/ThemeContext";
+import { useLanguage } from "../context/LanguageContext";
 
 function Skills() {
   const { theme } = useTheme();
+  const { language, translationData } = useLanguage();
+  const t = translationData[language];
 
   const skills = [
     {
@@ -27,7 +30,8 @@ function Skills() {
       name: "NODE",
       bgColor: "#1C1C1C",
       icon: "/node.jpg",
-      iconClass: "object-cover w-full h-full",
+      iconClass: "object-cover w-full h-full", // Kutuyu tamamen kaplar, padding yok
+      noPadding: true, // Padding'i kaldır
     },
     {
       name: "VS CODE",
@@ -51,14 +55,14 @@ function Skills() {
     >
       {/* SAĞ ÜSTTE - İçi boş gri halka */}
       <div
-        className={`absolute -top-12 right-1/4 w-32 h-32 rounded-full border-[21px]  ${
+        className={`absolute -top-12 right-1/4 w-32 h-32 rounded-full border-[21px] ${
           theme === "dark" ? "border-[#525252]" : "border-[#D9D9D9]"
         }`}
       ></div>
 
       {/* SOL TARAFTA - Koyu gri bant */}
       <div
-        className={`absolute left-0 bottom-16 w-20 h-10 rounded-r-full  ${
+        className={`absolute left-0 bottom-16 w-20 h-10 rounded-r-full ${
           theme === "dark" ? "bg-[#525252]" : "bg-[#D9D9D9]"
         }`}
       ></div>
@@ -72,7 +76,7 @@ function Skills() {
             theme === "dark" ? "text-white" : "text-gray-900"
           }`}
         >
-          Skills
+          {t.skillsTitle}
         </h2>
 
         <div className="flex flex-wrap justify-center gap-6 lg:gap-10">

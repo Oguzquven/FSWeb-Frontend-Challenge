@@ -1,7 +1,11 @@
 import { useTheme } from "../context/ThemeContext";
+import { useLanguage } from "../context/LanguageContext";
+import data from "../data/data";
 
 function Footer() {
   const { theme } = useTheme();
+  const { language } = useLanguage();
+  const t = data[language];
 
   return (
     <footer
@@ -28,14 +32,14 @@ function Footer() {
               letterSpacing: "0.01em",
             }}
           >
-            Let's{" "}
+            {language === "EN" ? "Let's " : "Bir sonraki "}
             <span className="relative inline-block" style={{ zIndex: 1 }}>
-              work together
+              {language === "EN" ? "work together" : "ürününde birlikte"}
               {/* Mavi arka plan çizgisi */}
               <span
                 style={{
                   position: "absolute",
-                  left: "20px",
+                  left: language === "EN" ? "20px" : "0",
                   bottom: "-7px",
                   width: "95%",
                   height: "15px",
@@ -45,7 +49,7 @@ function Footer() {
                 }}
               ></span>
             </span>{" "}
-            on your next product.
+            {language === "EN" ? "on your next product." : "çalışalım."}
           </h2>
         </div>
 
@@ -73,7 +77,7 @@ function Footer() {
               lineHeight: "150%",
             }}
           >
-            Personal Blog
+            {language === "EN" ? "Personal Blog" : "Kişisel Blog"}
           </a>
           <a
             href="#"
@@ -97,7 +101,7 @@ function Footer() {
               lineHeight: "150%",
             }}
           >
-            Email
+            {language === "EN" ? "Email" : "E-posta"}
           </a>
         </div>
       </div>
