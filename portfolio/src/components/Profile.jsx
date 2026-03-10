@@ -1,17 +1,31 @@
+import { useTheme } from "../context/ThemeContext";
+
 function Profile() {
+  const { theme } = useTheme();
+
   return (
-    <section className="relative py-16 px-16 bg-[#F4F4F4] overflow-hidden">
+    <section
+      className={`relative py-16 px-16 overflow-hidden transition-colors duration-300 ${
+        theme === "dark" ? "bg-[#2A262B]" : "bg-[#F4F4F4]"
+      }`}
+    >
       {/* SAĞ ÜSTTE - PEMBE HALKA */}
       <div className="absolute -top-12 -right-8 w-24 h-24 rounded-full border-[15px] border-[#D81B60]"></div>
 
-      <h2 className="text-4xl font-bold text-center mb-12 text-gray-900 relative z-10">
+      <h2
+        className={`text-4xl font-bold text-center mb-12 relative z-10 transition-colors duration-300 ${
+          theme === "dark" ? "text-white" : "text-gray-900"
+        }`}
+      >
         Profile
       </h2>
 
       <div className="flex gap-8 max-w-5xl mx-auto items-start relative z-10">
         {/* Sol - Bilgi tablosu */}
         <div
-          className="bg-white p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,0.15)]"
+          className={`p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,0.3)] transition-colors duration-300 ${
+            theme === "dark" ? "bg-[#525252]" : "bg-white"
+          }`}
           style={{
             width: "508px",
             minHeight: "322px",
@@ -27,32 +41,70 @@ function Profile() {
 
           <div className="flex flex-col gap-5 text-lg">
             <div className="flex gap-12">
-              <span className="text-gray-900 font-semibold w-36">
+              <span
+                className={`font-semibold w-36 transition-colors duration-300 ${
+                  theme === "dark" ? "text-white" : "text-gray-900"
+                }`}
+              >
                 Doğum tarihi
               </span>
-              <span className="text-gray-900">24.03.1996</span>
+              <span
+                className={`transition-colors duration-300 ${
+                  theme === "dark" ? "text-gray-200" : "text-gray-900"
+                }`}
+              >
+                24.03.1996
+              </span>
             </div>
             <div className="flex gap-12">
-              <span className="text-gray-900 font-semibold w-36">
+              <span
+                className={`font-semibold w-36 transition-colors duration-300 ${
+                  theme === "dark" ? "text-white" : "text-gray-900"
+                }`}
+              >
                 İkamet Şehri
               </span>
-              <span className="text-gray-900">Ankara</span>
+              <span
+                className={`transition-colors duration-300 ${
+                  theme === "dark" ? "text-gray-200" : "text-gray-900"
+                }`}
+              >
+                Ankara
+              </span>
             </div>
             <div className="flex gap-12">
-              <span className="text-gray-900 font-semibold w-36">
+              <span
+                className={`font-semibold w-36 transition-colors duration-300 ${
+                  theme === "dark" ? "text-white" : "text-gray-900"
+                }`}
+              >
                 Eğitim Durumu
               </span>
-              <span className="text-gray-900">
+              <span
+                className={`transition-colors duration-300 ${
+                  theme === "dark" ? "text-gray-200" : "text-gray-900"
+                }`}
+              >
                 Hacettepe Ünv. Biyoloji
                 <br />
                 Lisans, 2016
               </span>
             </div>
             <div className="flex gap-12">
-              <span className="text-gray-900 font-semibold w-36">
+              <span
+                className={`font-semibold w-36 transition-colors duration-300 ${
+                  theme === "dark" ? "text-white" : "text-gray-900"
+                }`}
+              >
                 Tercih Ettiği Rol
               </span>
-              <span className="text-gray-900">Frontend, UI</span>
+              <span
+                className={`transition-colors duration-300 ${
+                  theme === "dark" ? "text-gray-200" : "text-gray-900"
+                }`}
+              >
+                Frontend, UI
+              </span>
             </div>
           </div>
         </div>
@@ -67,7 +119,11 @@ function Profile() {
           }}
         >
           <div className="relative inline-block mb-4">
-            <h3 className="text-gray-900 text-lg font-normal relative z-10">
+            <h3
+              className={`text-lg font-normal relative z-10 transition-colors duration-300 ${
+                theme === "dark" ? "text-white" : "text-gray-900"
+              }`}
+            >
               About me
             </h3>
             <div
@@ -80,11 +136,19 @@ function Profile() {
               }}
             ></div>
           </div>
-          <p className="text-gray-700 text-lg leading-relaxed mb-4">
+          <p
+            className={`text-lg leading-relaxed mb-4 transition-colors duration-300 ${
+              theme === "dark" ? "text-gray-300" : "text-gray-700"
+            }`}
+          >
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam
             aut, odit laborum aliquam voluptatum nisi mollitia.
           </p>
-          <p className="text-gray-700 text-lg leading-relaxed">
+          <p
+            className={`text-lg leading-relaxed transition-colors duration-300 ${
+              theme === "dark" ? "text-gray-300" : "text-gray-700"
+            }`}
+          >
             Mnima accusamus ratione soluta aperiam sit voluptate? Dicta quod
             deserunt quam temporibus cumque magnam!
           </p>

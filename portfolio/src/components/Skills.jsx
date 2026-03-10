@@ -1,4 +1,8 @@
+import { useTheme } from "../context/ThemeContext";
+
 function Skills() {
+  const { theme } = useTheme();
+
   const skills = [
     {
       name: "JAVASCRIPT",
@@ -22,7 +26,7 @@ function Skills() {
     {
       name: "NODE",
       bgColor: "#1C1C1C",
-      icon: "/public/node.jpg",
+      icon: "/node.jpg",
       iconClass: "object-cover w-full h-full",
     },
     {
@@ -40,18 +44,34 @@ function Skills() {
   ];
 
   return (
-    <section className="w-full bg-white py-20 relative overflow-hidden">
+    <section
+      className={`w-full py-20 relative overflow-hidden transition-colors duration-300 ${
+        theme === "dark" ? "bg-[#484148]" : "bg-white"
+      }`}
+    >
       {/* SAĞ ÜSTTE - İçi boş gri halka */}
-      <div className="absolute -top-12 right-1/4 w-32 h-32 rounded-full border-[20px] border-[#D1D5DB] opacity-50"></div>
+      <div
+        className={`absolute -top-12 right-1/4 w-32 h-32 rounded-full border-[21px]  ${
+          theme === "dark" ? "border-[#525252]" : "border-[#D9D9D9]"
+        }`}
+      ></div>
 
       {/* SOL TARAFTA - Koyu gri bant */}
-      <div className="absolute left-0 bottom-16 w-20 h-10 bg-[#4B5563] rounded-r-full opacity-90"></div>
+      <div
+        className={`absolute left-0 bottom-16 w-20 h-10 rounded-r-full  ${
+          theme === "dark" ? "bg-[#525252]" : "bg-[#D9D9D9]"
+        }`}
+      ></div>
 
-      {/* SAĞ ALTTA - PEMBE ÇEMBER (#D81B60) */}
+      {/* SAĞ ALTTA - PEMBE ÇEMBER */}
       <div className="absolute -bottom-12 -right-8 w-24 h-24 rounded-full border-[15px] border-[#D81B60] opacity-90"></div>
 
       <div className="max-w-6xl mx-auto px-6 relative z-10">
-        <h2 className="text-4xl font-normal text-center text-gray-900 mb-16">
+        <h2
+          className={`text-4xl font-normal text-center mb-16 transition-colors duration-300 ${
+            theme === "dark" ? "text-white" : "text-gray-900"
+          }`}
+        >
           Skills
         </h2>
 
@@ -70,7 +90,11 @@ function Skills() {
                   className={skill.iconClass}
                 />
               </div>
-              <p className="text-xs text-gray-500 font-medium tracking-widest">
+              <p
+                className={`text-xs font-medium tracking-widest transition-colors duration-300 ${
+                  theme === "dark" ? "text-gray-300" : "text-gray-500"
+                }`}
+              >
                 {skill.name}
               </p>
             </div>

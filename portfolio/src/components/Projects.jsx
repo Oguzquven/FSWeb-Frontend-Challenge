@@ -1,12 +1,18 @@
+import { useTheme } from "../context/ThemeContext";
+
 function Projects() {
+  const { theme } = useTheme();
+
   const projects = [
     {
       title: "Random Jokes",
       description:
         "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam aut, odit laborum aliquam voluptatum nisi mollitia.",
       tags: ["react", "vercel", "axios", "router"],
-      bgColor: "#E3F2FD",
-      textColor: "#1A1A1A",
+      bgColor: theme === "dark" ? "#2D3436" : "#E3F2FD",
+      textColor: theme === "dark" ? "#FFFFFF" : "#1A1A1A",
+      tagBg: theme === "dark" ? "#3D4649" : "#FFFFFF",
+      tagText: theme === "dark" ? "#FFFFFF" : "#37474F",
       screenImage:
         "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop",
     },
@@ -15,17 +21,27 @@ function Projects() {
       description:
         "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam aut, odit laborum aliquam voluptatum nisi mollitia minima accusamus ratione soluta aperiam sit voluptate? Dicta quod deserunt quam temporibus cumque magnam!",
       tags: ["react", "redux", "axios", "router", "vercel"],
-      bgColor: "#D4F5E9",
-      textColor: "#1A1A1A",
+      bgColor: theme === "dark" ? "#3D5A56" : "#D4F5E9",
+      textColor: theme === "dark" ? "#FFFFFF" : "#1A1A1A",
+      tagBg: theme === "dark" ? "#4A6B66" : "#FFFFFF",
+      tagText: theme === "dark" ? "#FFFFFF" : "#37474F",
       screenImage:
         "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop",
     },
   ];
 
   return (
-    <section className="w-full bg-white py-20">
+    <section
+      className={`w-full py-20 transition-colors duration-300 ${
+        theme === "dark" ? "bg-[#484148]" : "bg-white"
+      }`}
+    >
       <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-4xl font-bold text-center text-gray-900 mb-16">
+        <h2
+          className={`text-4xl font-bold text-center mb-16 transition-colors duration-300 ${
+            theme === "dark" ? "text-white" : "text-gray-900"
+          }`}
+        >
           Projects
         </h2>
 
@@ -42,7 +58,7 @@ function Projects() {
                 paddingBottom: "0",
               }}
             >
-              {/* Başlık - Figma: Playfair Display, 29px, 700 */}
+              {/* Başlık */}
               <h3
                 className="mb-4"
                 style={{
@@ -56,26 +72,27 @@ function Projects() {
                 {project.title}
               </h3>
 
-              {/* Açıklama - Figma: 16px */}
+              {/* Açıklama */}
               <p
-                className="text-gray-700 leading-relaxed mb-6"
+                className={`leading-relaxed mb-6 transition-colors duration-300 ${
+                  theme === "dark" ? "text-gray-200" : "text-gray-700"
+                }`}
                 style={{ fontSize: "16px" }}
               >
                 {project.description}
               </p>
 
-              {/* Tag'ler - Figma: Hug 270x32, gap 9px */}
-              <div
-                className="flex flex-wrap mb-8"
-                style={{ gap: "9px" }}
-              >
+              {/* Tag'ler */}
+              <div className="flex flex-wrap mb-8" style={{ gap: "9px" }}>
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="bg-white rounded-full text-sm font-medium text-gray-700 shadow-sm"
+                    className="rounded-full text-sm font-medium shadow-sm"
                     style={{
                       padding: "8px 16px",
                       height: "32px",
+                      backgroundColor: project.tagBg,
+                      color: project.tagText,
                     }}
                   >
                     {tag}
@@ -83,13 +100,13 @@ function Projects() {
                 ))}
               </div>
 
-              {/* Linkler - Figma: Inter, 20px, 600 */}
+              {/* Linkler */}
               <div className="flex justify-between items-center mb-6">
                 <a
                   href="#"
                   className="hover:underline"
                   style={{
-                    color: "#000000",
+                    color: theme === "dark" ? "#FFFFFF" : "#000000",
                     fontFamily: "Inter, sans-serif",
                     fontSize: "20px",
                     fontWeight: 600,
@@ -102,7 +119,7 @@ function Projects() {
                   href="#"
                   className="hover:underline flex items-center gap-2"
                   style={{
-                    color: "#000000",
+                    color: theme === "dark" ? "#FFFFFF" : "#000000",
                     fontFamily: "Inter, sans-serif",
                     fontSize: "20px",
                     fontWeight: 600,
@@ -113,7 +130,7 @@ function Projects() {
                 </a>
               </div>
 
-              {/* Laptop Mockup - Sizin ayarlarınız korundu */}
+              {/* Laptop Mockup */}
               <div
                 className="relative mt-auto"
                 style={{ marginBottom: "-40px" }}
@@ -129,7 +146,7 @@ function Projects() {
                     className="w-full h-full object-contain"
                   />
 
-                  {/* Ekran İçeriği - Sizin ayarlarınız */}
+                  {/* Ekran İçeriği */}
                   <div
                     className="absolute overflow-hidden"
                     style={{
