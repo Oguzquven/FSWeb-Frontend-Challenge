@@ -8,7 +8,7 @@ function Profile() {
 
   return (
     <section
-      className={`relative py-16 px-4 sm:px-8 lg:px-16 overflow-hidden transition-colors duration-300 ${
+      className={`relative py-16 px-16 overflow-hidden transition-colors duration-300 ${
         theme === "dark" ? "bg-[#2A262B]" : "bg-[#F4F4F4]"
       }`}
     >
@@ -22,13 +22,13 @@ function Profile() {
         {t.profileTitle}
       </h2>
 
-      <div className="flex flex-col lg:flex-row gap-8 max-w-5xl mx-auto items-start relative z-10">
+      <div className="flex gap-8 max-w-5xl mx-auto items-start relative z-10">
         {/* Sol - Bilgi tablosu */}
         <div
-          className={`w-full lg:w-auto p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,0.3)] transition-colors duration-300 ${
+          className={`p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,0.3)] transition-colors duration-300 ${
             theme === "dark" ? "bg-[#525252]" : "bg-white"
           }`}
-          style={{ minHeight: "322px", borderRadius: "12px" }}
+          style={{ width: "508px", minHeight: "322px", borderRadius: "12px" }}
         >
           <h3
             className="text-[#D81B60] text-2xl font-normal mb-8"
@@ -62,16 +62,12 @@ function Profile() {
             ].map((item, i) => (
               <div key={i} className="flex gap-12">
                 <span
-                  className={`font-semibold w-36 transition-colors duration-300 ${
-                    theme === "dark" ? "text-white" : "text-gray-900"
-                  }`}
+                  className={`font-semibold w-36 transition-colors duration-300 ${theme === "dark" ? "text-white" : "text-gray-900"}`}
                 >
                   {item.label}
                 </span>
                 <span
-                  className={`transition-colors duration-300 ${
-                    theme === "dark" ? "text-gray-200" : "text-gray-900"
-                  }`}
+                  className={`transition-colors duration-300 ${theme === "dark" ? "text-gray-200" : "text-gray-900"}`}
                 >
                   {item.value}
                 </span>
@@ -82,14 +78,12 @@ function Profile() {
 
         {/* Sağ - Hakkında yazısı */}
         <div
-          className="w-full lg:w-auto p-6"
-          style={{ minHeight: "241px", borderRadius: "4px" }}
+          className="p-6"
+          style={{ width: "476px", minHeight: "241px", borderRadius: "4px" }}
         >
           <div className="relative inline-block mb-4">
             <h3
-              className={`text-lg font-normal relative z-10 transition-colors duration-300 ${
-                theme === "dark" ? "text-white" : "text-gray-900"
-              }`}
+              className={`text-lg font-normal relative z-10 transition-colors duration-300 ${theme === "dark" ? "text-white" : "text-gray-900"}`}
             >
               {t.aboutMe}
             </h3>
@@ -104,17 +98,13 @@ function Profile() {
             ></div>
           </div>
           <p
-            className={`text-lg leading-relaxed mb-4 transition-colors duration-300 ${
-              theme === "dark" ? "text-gray-300" : "text-gray-700"
-            }`}
+            className={`text-lg leading-relaxed mb-4 transition-colors duration-300 ${theme === "dark" ? "text-gray-300" : "text-gray-700"}`}
           >
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam
             aut, odit laborum aliquam voluptatum nisi mollitia.
           </p>
           <p
-            className={`text-lg leading-relaxed transition-colors duration-300 ${
-              theme === "dark" ? "text-gray-300" : "text-gray-700"
-            }`}
+            className={`text-lg leading-relaxed transition-colors duration-300 ${theme === "dark" ? "text-gray-300" : "text-gray-700"}`}
           >
             Mnima accusamus ratione soluta aperiam sit voluptate? Dicta quod
             deserunt quam temporibus cumque magnam!
