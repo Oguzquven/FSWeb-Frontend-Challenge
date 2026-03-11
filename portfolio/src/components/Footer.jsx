@@ -1,11 +1,10 @@
 import { useTheme } from "../context/ThemeContext";
 import { useLanguage } from "../context/LanguageContext";
-import data from "../data/data";
 
 function Footer() {
   const { theme } = useTheme();
-  const { language } = useLanguage();
-  const t = data[language];
+  const { language, translationData } = useLanguage();
+  const t = translationData[language];
 
   return (
     <footer
@@ -13,13 +12,7 @@ function Footer() {
         theme === "dark" ? "bg-[#484148]" : "bg-white"
       }`}
     >
-      <div
-        className="flex justify-between items-start"
-        style={{
-          width: "758px",
-          height: "137px",
-        }}
-      >
+      <div className="flex flex-col lg:flex-row justify-between items-start gap-8 w-full max-w-3xl px-6">
         {/* Sol taraf - Başlık */}
         <div style={{ width: "540px" }}>
           <h2

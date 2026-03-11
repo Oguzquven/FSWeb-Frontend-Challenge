@@ -1,11 +1,10 @@
 import { useTheme } from "../context/ThemeContext";
 import { useLanguage } from "../context/LanguageContext";
-import data from "../data/data";
 
 function Projects() {
   const { theme } = useTheme();
-  const { language } = useLanguage();
-  const t = data[language];
+  const { language, translationData } = useLanguage();
+  const t = translationData[language];
 
   const projects = [
     {
@@ -49,18 +48,17 @@ function Projects() {
           {t.projectsTitle}
         </h2>
 
-        <div className="flex justify-center gap-8">
+        <div className="flex flex-col lg:flex-row justify-center gap-8">
           {projects.map((project, index) => (
             <div
               key={index}
-              className="flex flex-col relative"
+              className="flex flex-col relative w-full lg:w-[500px]"
               style={{
-                width: "500px",
                 backgroundColor: project.bgColor,
                 borderRadius: "12px",
                 padding: "32px",
                 paddingBottom: "0",
-                overflow: "visible", // Klavyenin dışarı çıkmasına izin ver
+                overflow: "visible",
               }}
             >
               {/* Başlık */}
@@ -139,13 +137,14 @@ function Projects() {
               <div
                 className="relative mt-auto flex justify-center w-full"
                 style={{
-                  marginBottom: "-60px", // Klavye kartın dışına taşsın
+                  marginBottom: "-60px",
                 }}
               >
                 <div
                   className="relative"
                   style={{
-                    width: "500px",
+                    width: "100%",
+                    maxWidth: "500px",
                     height: "287px",
                   }}
                 >
