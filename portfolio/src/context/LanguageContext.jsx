@@ -1,5 +1,6 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 import data from "../data/data";
 
 const LanguageContext = createContext();
@@ -18,10 +19,12 @@ export function LanguageProvider({ children }) {
       .then((res) => {
         console.log("API yanıtı:", res.data);
         setTranslationData(data);
+        toast.success("Veriler başarıyla yüklendi!");
       })
       .catch((err) => {
         console.error("API hatası:", err);
         setTranslationData(data);
+        toast.error("Veri yüklenirken hata oluştu!");
       });
   }, []);
 

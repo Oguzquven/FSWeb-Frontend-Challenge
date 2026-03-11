@@ -1,6 +1,8 @@
 import { useTheme } from "./context/ThemeContext";
 import { LanguageProvider } from "./context/LanguageContext";
 import { ThemeProvider } from "./context/ThemeContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Hero from "./components/Hero";
 import Skills from "./components/Skills";
 import Profile from "./components/Profile";
@@ -23,6 +25,7 @@ function AppContent() {
       <Profile />
       <Projects />
       <Footer />
+      <ToastContainer position="bottom-right" theme={theme} />
     </div>
   );
 }
